@@ -1,13 +1,5 @@
-import psycopg2
-
-conn = psycopg2.connect(
-        dbname="PythonPractice",
-        user="postgres",
-        password="@31March1998",
-        host="localhost",
-        port="5432"
-    )
-#Open a cursor to perform database operations
+from db_config import get_connection
+conn = get_connection()
 cur = conn.cursor()
 #execute a command: this creates a new table
 cur.execute("""CREATE TABLE datacamp_courses(

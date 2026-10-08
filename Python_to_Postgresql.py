@@ -1,21 +1,10 @@
-import psycopg2
-
+from db_config import get_connection
 try:
-    # Attempt to establish the connection
-    connection = psycopg2.connect(
-        dbname="PythonPractice",
-        user="postgres",
-        password="@31March1998",
-        host="localhost",
-        port="5432"
-    )
-    
-    # Create a cursor object to execute SQL commands
-    cursor = connection.cursor()
-    
+    conn = get_connection()
+    cur = conn.cursor()    
     # Run a basic query to verify connectivity
-    cursor.execute("SELECT version();")
-    db_version = cursor.fetchone()
+    cur.execute("SELECT version();")
+    db_version = cur.fetchone()
     
     print("Connection successful!")
     print("PostgreSQL Database Version:", db_version[0])
